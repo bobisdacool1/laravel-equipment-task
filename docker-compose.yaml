@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Nginx.Dockerfile
+    ports:
+      - 8035:80
+    links:
+      - fpm
+    volumes:
+      - ./:/var/www/equipment-task
+  fpm:
+    build:
+      context: .
+      dockerfile: docker/Fpm.Dockerfile
+    volumes:
+      - ./:/var/www/equipment-task
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - mysql
+  mysql:
+    build:
+      context: .
+      dockerfile: docker/Mysql.Dockerfile
+    ports:
+      - 33068:3306
+    environment:
+      MYSQL_DATABASE: "equipment-task"
+      MYSQL_USER: "mysql"
+      MYSQL_PASSWORD: "root"
