@@ -1,4 +1,4 @@
-FROM postgres
+FROM mysql
 
 RUN apt-get update
 

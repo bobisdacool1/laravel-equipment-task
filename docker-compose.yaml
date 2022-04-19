@@ -27,6 +27,7 @@ services:
     ports:
       - 33068:3306
     environment:
-      MYSQL_DATABASE: "equipment-task"
+      MYSQL_DATABASE: "equipment"
       MYSQL_USER: "mysql"
       MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
