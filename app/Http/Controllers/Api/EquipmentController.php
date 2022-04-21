@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Equipment\EquipmentIndexRequest;
 use App\Http\Requests\Equipment\StoreEquipmentRequest;
-use App\Models\EquipmentType;
+use App\Http\Requests\Equipment\StoreManyEquipmentRequest;
 use App\Repositories\EquipmentRepository;
-use App\Rules\FitMask;
 
 class EquipmentController extends Controller
 {
@@ -33,21 +32,27 @@ class EquipmentController extends Controller
         return response()->json($channel);
     }
 
-
     public function store(StoreEquipmentRequest $request)
     {
         $validated = $request->validated();
-
-        $mask = EquipmentType::where('id', $validated['type_id'])->first()->mask;
-
-        $request->validate([
-            'serial_code' => [
-                'string',
-                new FitMask($mask),
-            ],
-        ]);
+        $this->repository->checkIfSerialCodeFitTypeMask($request);
 
         $equipment = $this->repository->save($validated);
+
+        return response()->json($equipment);
+    }
+
+    // in php there is no methood reload, so i cant make two methods with different input request types, so i just made two methods
+    public function storeMany(StoreManyEquipmentRequest $request)
+    {
+        $validated = $request->validated();
+
+        foreach ($validated as $validatedItem) {
+            $this->checkIfSerialCodeFitTypeMask($request, $validatedItem['type_id']);
+
+            // this is bad, it would be better if i could save multiple records once
+            $equipment[] = $this->repository->save($validatedItem);
+        }
 
         return response()->json($equipment);
     }
@@ -55,15 +60,7 @@ class EquipmentController extends Controller
     public function update(StoreEquipmentRequest $request, int $id)
     {
         $validated = $request->validated();
-
-        $mask = EquipmentType::where('id', $validated['type_id'])->first()->mask;
-
-        $request->validate([
-            'serial_code' => [
-                'string',
-                new FitMask($mask),
-            ],
-        ]);
+        $this->repository->checkIfSerialCodeFitTypeMask($request);
 
         $equipment = $this->repository->update($id, $validated);
 

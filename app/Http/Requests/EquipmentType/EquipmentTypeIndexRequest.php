@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Equipment;
+
+namespace App\Http\Requests\EquipmentType;
+
 
 use App\Rules\ColumnExists;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class EquipmentIndexRequest extends FormRequest
+class EquipmentTypeIndexRequest extends FormRequest
 {
     public function authorize()
     {
@@ -24,7 +26,7 @@ class EquipmentIndexRequest extends FormRequest
             'sort_order' => 'in:asc,desc',
             'sort_by' => [
                 'string',
-                new ColumnExists('equipment'),
+                new ColumnExists('equipment_types'),
             ],
             'search' => 'array',
             'page' => 'int'

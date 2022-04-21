@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EquipmentController;
+use App\Http\Controllers\Api\EquipmentTypeController;
 use App\Http\Controllers\Api\TokenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,16 @@ Route::controller(EquipmentController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
+        Route::put('/', 'storeMany')->name('storeMany');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'delete')->name('delete');
+    });
+Route::controller(EquipmentTypeController::class)
+    ->middleware('auth:sanctum')
+    ->prefix('equipment-types')
+    ->name('equipment.types')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 
 // the code bellow is created for demonstration purposes
