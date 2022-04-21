@@ -66,7 +66,7 @@ class EquipmentController extends Controller
         $validated = $request->validated();
 
         foreach ($validated as $validatedItem) {
-            $this->checkIfSerialCodeFitTypeMask($request, $validatedItem['type_id']);
+            $this->repository->checkIfSerialCodeFitTypeMask($request, $validatedItem['type_id']);
 
             // this is bad, it would be better if i could save multiple records once
             $equipment[] = $this->repository->save($validatedItem);

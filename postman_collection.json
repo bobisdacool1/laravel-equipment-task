@@ -1,0 +1,330 @@
+{
+    "info": {
+        "_postman_id": "1b507f48-767c-413d-92a5-a685edbf14b2",
+        "name": "equipment-task",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Equipment",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment?sort_by=code&sort_order=asc&count=2&page=1&search[id]=36",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sort_by",
+                                    "value": "code"
+                                },
+                                {
+                                    "key": "sort_order",
+                                    "value": "asc"
+                                },
+                                {
+                                    "key": "count",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "search[id]",
+                                    "value": "36"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Index Types",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment-types?sort_by=code&sort_order=asc&count=2&page=1&search[id]=1",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment-types"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sort_by",
+                                    "value": "code"
+                                },
+                                {
+                                    "key": "sort_order",
+                                    "value": "asc"
+                                },
+                                {
+                                    "key": "count",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "search[id]",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment/2",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment",
+                                "2"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment?code=test code1&type_id=1&serial_code=A5AAAAAAAA",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment"
+                            ],
+                            "query": [
+                                {
+                                    "key": "code",
+                                    "value": "test code1"
+                                },
+                                {
+                                    "key": "type_id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "serial_code",
+                                    "value": "A5AAAAAAAB"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store Many",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment?0[code]=test many 1&0[type_id]=1&0[serial_code]=A5AAAAAABA&1[code]=test many 2&1[type_id]=1&1[serial_code]=A5AAAAAACA",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment"
+                            ],
+                            "query": [
+                                {
+                                    "key": "0[code]",
+                                    "value": "test many 1"
+                                },
+                                {
+                                    "key": "0[type_id]",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "0[serial_code]",
+                                    "value": "A5AAAAAABB"
+                                },
+                                {
+                                    "key": "1[code]",
+                                    "value": "test many 2"
+                                },
+                                {
+                                    "key": "1[type_id]",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "1[serial_code]",
+                                    "value": "A5AAAAAACB"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "localhost:8035/api/equipment/51?code=test code1 updated2&type_id=1",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8035",
+                            "path": [
+                                "api",
+                                "equipment",
+                                "51"
+                            ],
+                            "query": [
+                                {
+                                    "key": "code",
+                                    "value": "test code1 updated2"
+                                },
+                                {
+                                    "key": "type_id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "serial_code",
+                                    "value": "C5AAAAAAAA"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "New token",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "localhost:8035/api/token/new?user_id=1&token_name=Test token",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8035",
+                    "path": [
+                        "api",
+                        "token",
+                        "new"
+                    ],
+                    "query": [
+                        {
+                            "key": "user_id",
+                            "value": "1"
+                        },
+                        {
+                            "key": "token_name",
+                            "value": "Test token"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
+}
