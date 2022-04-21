@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EquipmentType\EquipmentTypeIndexRequest;
 use App\Repositories\EquipmentTypeRepository;
+use Illuminate\Http\JsonResponse;
 
 class EquipmentTypeController extends Controller
 {
+    /**
+     * @param EquipmentTypeIndexRequest $request
+     * @return JsonResponse
+     */
     public function index(EquipmentTypeIndexRequest $request)
     {
         $sort['field'] = $request->input('sort_by', 'created_at');
@@ -24,6 +29,9 @@ class EquipmentTypeController extends Controller
     }
 
 
+    /**
+     * @return EquipmentTypeRepository
+     */
     protected function newRepository()
     {
         return new EquipmentTypeRepository();

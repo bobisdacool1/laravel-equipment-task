@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\EquipmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Equipment extends Model
 {
@@ -17,11 +18,17 @@ class Equipment extends Model
         'note',
     ];
 
+    /**
+     * @return EquipmentFactory
+     */
     protected static function newFactory()
     {
         return EquipmentFactory::new();
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function type()
     {
         return $this->belongsTo(EquipmentType::class);

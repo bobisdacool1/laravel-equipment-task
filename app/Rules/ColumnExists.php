@@ -8,15 +8,8 @@ use Illuminate\Support\Facades\Schema;
 
 class ColumnExists implements Rule, DataAwareRule
 {
-    /**
-     * All of the data under validation.
-     *
-     * @var array
-     */
     protected $data;
-
-    protected $table;
-
+    protected string $table;
 
     /**
      * Create a new rule instance.

@@ -14,10 +14,16 @@ abstract class Controller extends BaseController
 
     protected Repository $repository;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
         $this->repository = $this->newRepository();
     }
 
+    /**
+     * @return mixed
+     */
     abstract protected function newRepository();
 }

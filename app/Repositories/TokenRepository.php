@@ -10,6 +10,11 @@ use Exception;
 
 class TokenRepository extends Repository implements ITokenRepository
 {
+    /**
+     * @param int $userId
+     * @param string $tokenName
+     * @return mixed
+     */
     public function generateNewToken(int $userId, string $tokenName)
     {
         try {

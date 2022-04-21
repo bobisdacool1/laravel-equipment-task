@@ -6,8 +6,8 @@ use Illuminate\Contracts\Validation\Rule;
 
 class FitMask implements Rule
 {
-    protected string $mask;
-    private array $availableMasks = [
+    private string $mask;
+    protected array $availableMasks = [
         'N' => '[0-9]',
         'A' => '[A-Z]',
         'a' => '[a-z]',
@@ -15,6 +15,10 @@ class FitMask implements Rule
         'Z' => '-|_|@',
     ];
 
+    /**
+     * FitMask constructor.
+     * @param string $mask
+     */
     public function __construct(string $mask)
     {
         $this->mask = $mask;

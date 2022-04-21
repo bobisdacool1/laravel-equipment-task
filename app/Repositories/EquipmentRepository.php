@@ -8,9 +8,17 @@ use App\Http\Resources\EquipmentResource;
 use App\Models\Equipment;
 use App\Models\EquipmentType;
 use App\Rules\FitMask;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EquipmentRepository extends BasicRepository
 {
+    /**
+     * @param $request
+     * @param null $type_id
+     * @return mixed
+     */
     public function checkIfSerialCodeFitTypeMask($request, $type_id = null)
     {
         if ($type_id === null)
@@ -26,21 +34,35 @@ class EquipmentRepository extends BasicRepository
         ]);
     }
 
+    /**
+     * @return Builder
+     */
     protected function getModelWithRelations()
     {
         return Equipment::with('type');
     }
 
+    /**
+     * @return string
+     */
     protected function getModel()
     {
         return Equipment::class;
     }
 
+    /**
+     * @param $data
+     * @return AnonymousResourceCollection|JsonResource
+     */
     protected function newResourceCollection($data)
     {
         return EquipmentResource::collection($data);
     }
 
+    /**
+     * @param $object
+     * @return EquipmentResource
+     */
     protected function newResource($object)
     {
         return new EquipmentResource($object);

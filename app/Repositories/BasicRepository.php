@@ -12,6 +12,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class BasicRepository extends Repository implements IBasicRepository
 {
+    /**
+     * @param int $quantity
+     * @param int $page
+     * @param array|string[] $sort
+     * @param array $searchFields
+     * @return JsonResource|mixed
+     */
     public function getAll(int $quantity = 50, int $page = 1, array $sort = ['field' => 'created_at', 'order' => 'asc'], array $searchFields = [])
     {
         try {
@@ -41,6 +48,10 @@ abstract class BasicRepository extends Repository implements IBasicRepository
 
     abstract protected function getModelWithRelations();
 
+    /**
+     * @param int $id
+     * @return JsonResource|mixed
+     */
     public function getById(int $id)
     {
         try {
@@ -57,6 +68,10 @@ abstract class BasicRepository extends Repository implements IBasicRepository
      */
     abstract protected function newResource($object);
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function destroy(int $id)
     {
         try {
@@ -76,6 +91,11 @@ abstract class BasicRepository extends Repository implements IBasicRepository
      */
     abstract protected function getModel();
 
+    /**
+     * @param int $id
+     * @param array $fields
+     * @return JsonResource|mixed
+     */
     public function update(int $id, array $fields)
     {
         try {
@@ -93,6 +113,10 @@ abstract class BasicRepository extends Repository implements IBasicRepository
         }
     }
 
+    /**
+     * @param array $fields
+     * @return JsonResource|mixed
+     */
     public function save(array $fields)
     {
         try {

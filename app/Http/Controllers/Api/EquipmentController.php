@@ -7,9 +7,14 @@ use App\Http\Requests\Equipment\EquipmentIndexRequest;
 use App\Http\Requests\Equipment\StoreEquipmentRequest;
 use App\Http\Requests\Equipment\StoreManyEquipmentRequest;
 use App\Repositories\EquipmentRepository;
+use Illuminate\Http\JsonResponse;
 
 class EquipmentController extends Controller
 {
+    /**
+     * @param EquipmentIndexRequest $request
+     * @return JsonResponse
+     */
     public function index(EquipmentIndexRequest $request)
     {
         $sort['field'] = $request->input('sort_by', 'created_at');
@@ -25,6 +30,10 @@ class EquipmentController extends Controller
         return response()->json($channels);
     }
 
+    /**
+     * @param int $channelId
+     * @return JsonResponse
+     */
     public function show(int $channelId)
     {
         $channel = $this->repository->getById($channelId);
@@ -32,6 +41,10 @@ class EquipmentController extends Controller
         return response()->json($channel);
     }
 
+    /**
+     * @param StoreEquipmentRequest $request
+     * @return JsonResponse
+     */
     public function store(StoreEquipmentRequest $request)
     {
         $validated = $request->validated();
@@ -42,9 +55,14 @@ class EquipmentController extends Controller
         return response()->json($equipment);
     }
 
-    // in php there is no methood reload, so i cant make two methods with different input request types, so i just made two methods
+
+    /**
+     * @param StoreManyEquipmentRequest $request
+     * @return JsonResponse
+     */
     public function storeMany(StoreManyEquipmentRequest $request)
     {
+        // in php there is no method reload, so i cant make two methods with different input request types, so i just made two methods
         $validated = $request->validated();
 
         foreach ($validated as $validatedItem) {
@@ -57,6 +75,11 @@ class EquipmentController extends Controller
         return response()->json($equipment);
     }
 
+    /**
+     * @param StoreEquipmentRequest $request
+     * @param int $id
+     * @return JsonResponse
+     */
     public function update(StoreEquipmentRequest $request, int $id)
     {
         $validated = $request->validated();
@@ -67,6 +90,10 @@ class EquipmentController extends Controller
         return response()->json($equipment);
     }
 
+    /**
+     * @param int $channelId
+     * @return JsonResponse
+     */
     public function destroy(int $channelId)
     {
         $deleted = $this->repository->destroy($channelId);
@@ -74,6 +101,9 @@ class EquipmentController extends Controller
         return response()->json(['deleted' => $deleted]);
     }
 
+    /**
+     * @return EquipmentRepository
+     */
     protected function newRepository()
     {
         return new EquipmentRepository();
